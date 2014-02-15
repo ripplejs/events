@@ -23,15 +23,18 @@ This can be any type of event, eg: `on-dblclick`, `on-touch`, `on-keydown`. The 
 
 ```js
 var events = require('events');
-
-// Use the plugin
-ripple.use(events);
+var ripple = require('ripple');
 
 // Compile the view
-var View = ripple.compile(template);
+var View = ripple(template);
+
+// Use the plugin
+View.use(events);
 
 // Listen for the events
-View.event('save', doEeeet);
+View.init(function(){
+  this.on('save', this.save);
+});
 ```
 
 ## License
