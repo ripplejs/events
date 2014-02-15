@@ -9,7 +9,7 @@
   },
   "development": {
     "component/assert": "*",
-    "ripplejs/ripple": "*",
+    "ripplejs/ripple": "0.0.1",
     "ianstormtaylor/trigger-event": "*"
   },
   "license": "MIT",

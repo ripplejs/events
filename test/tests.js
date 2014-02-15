@@ -6,20 +6,27 @@ var events = require('events');
 ripple.use(events);
 
 describe('events', function(){
+  var View;
+
+  beforeEach(function () {
+    View = ripple('<div on-click="foo"></div>');
+  });
 
   it('should bind to events', function(done){
-    var View = ripple.compile('<div on-click="foo"></div>');
-    View.event('foo', function(){
-      done();
+    View.init(function(){
+      this.on('foo', function(){
+        done();
+      })
     });
     var view = new View();
     trigger(view.el, 'click');
   });
 
   it('should unbind from events', function(done){
-    var View = ripple.compile('<div on-click="foo"></div>');
-    View.event('foo', function(){
-      done(false);
+    View.init(function(){
+      this.on('foo', function(){
+        done(false);
+      })
     });
     var view = new View();
     view.unbind();
@@ -28,9 +35,10 @@ describe('events', function(){
   });
 
   it('should rebind to events', function(done){
-    var View = ripple.compile('<div on-click="foo"></div>');
-    View.event('foo', function(){
-      done();
+    View.init(function(){
+      this.on('foo', function(){
+        done(true);
+      })
     });
     var view = new View();
     view.unbind();
