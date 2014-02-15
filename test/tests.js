@@ -1,15 +1,14 @@
-var ripple = require('ripple')();
+var ripple = require('ripple');
 var assert = require('assert');
 var trigger = require('trigger-event');
 var events = require('events');
-
-ripple.use(events);
 
 describe('events', function(){
   var View;
 
   beforeEach(function () {
     View = ripple('<div on-click="foo"></div>');
+    View.use(events);
   });
 
   it('should bind to events', function(done){
@@ -26,7 +25,7 @@ describe('events', function(){
     View.init(function(){
       this.on('foo', function(){
         done(false);
-      })
+      });
     });
     var view = new View();
     view.unbind();
@@ -37,7 +36,7 @@ describe('events', function(){
   it('should rebind to events', function(done){
     View.init(function(){
       this.on('foo', function(){
-        done(true);
+        done();
       })
     });
     var view = new View();

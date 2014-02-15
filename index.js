@@ -8,7 +8,7 @@ module.exports = function() {
       node.addEventListener(eventType, callback, true);
     });
     view.on('unbind', function(){
-      node.removeEventListener(eventType, callback);
+      node.removeEventListener(eventType, callback, true);
     });
   });
 };
