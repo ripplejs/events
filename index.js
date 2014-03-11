@@ -1,13 +1,13 @@
-module.exports = function() {
-  this.directive(/on-([a-z]+)/, function(view, node, attr, eventName){
+module.exports = function(View) {
+  View.directive(/on-([a-z]+)/, function(view, node, attr, method){
     var eventType = attr.replace('on-','');
     function callback(e){
-      view.emit(eventName, e);
+      view[method](e);
     }
-    view.on('bind', function(){
+    view.on('mount', function(){
       node.addEventListener(eventType, callback, true);
     });
-    view.on('unbind', function(){
+    view.on('unmount', function(){
       node.removeEventListener(eventType, callback, true);
     });
   });
