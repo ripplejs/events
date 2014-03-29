@@ -16,7 +16,7 @@
 A template can use `on-*` to emit events on the view.
 
 ```html
-<button on-click="save">Save</button>
+<button on-click="{{ this.save }}">Save</button>
 ```
 
 This can be any type of event, eg: `on-dblclick`, `on-touch`, `on-keydown`. The node just needs to emit the event after the `on-` portion of the attribute.
@@ -32,9 +32,21 @@ var View = ripple(template);
 View.use(events);
 
 // Listen for the events
-View.init(function(){
-  this.on('save', this.save);
-});
+View.prototype.save = function(){
+  // Do things
+};
+```
+
+You can also pass data to the directive and it will update automatically:
+
+```html
+<button on-click="{{ this.save.bind(this, foobar) }}">Save</button>
+```
+
+or pass it through filters:
+
+```html
+<button on-click="{{ this.save | preventDefault }}">Save</button>
 ```
 
 ## License
