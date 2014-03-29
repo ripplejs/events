@@ -1,14 +1,41 @@
+var events = [
+  'change',
+  'click',
+  'dblclick',
+  'mousedown',
+  'mouseup',
+  'mouseenter',
+  'mouseleave',
+  'scroll',
+  'blur',
+  'focus',
+  'input',
+  'submit',
+  'keydown',
+  'keypress',
+  'keyup'
+];
+
+// enter
+// command + enter
+// escape
+// any key press
+// any key combination
+// on-keypress="{{ this.submit.bind(this, $index) | keys:'super + enter' }}"
+
 module.exports = function(View) {
-  View.directive(/on-([a-z]+)/, function(view, node, attr, method){
-    var eventType = attr.replace('on-','');
-    function callback(e){
-      view[method](e);
-    }
-    view.on('mount', function(){
-      node.addEventListener(eventType, callback, true);
-    });
-    view.on('unmount', function(){
-      node.removeEventListener(eventType, callback, true);
+  events.forEach(function(name){
+    View.directive('on-' + name, {
+      update: function(fn){
+        if(this.callback) {
+          this.node.removeEventListener(name, this.callback, true);
+        }
+        this.callback = fn.bind(this.view);
+        this.node.addEventListener(name, this.callback, true);
+      },
+      unbind: function(){
+        this.node.removeEventListener(name, this.callback, true);
+      }
     });
   });
 };

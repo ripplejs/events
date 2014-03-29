@@ -9,8 +9,9 @@
   },
   "development": {
     "component/assert": "*",
-    "ripplejs/ripple": "0.0.1",
-    "ianstormtaylor/trigger-event": "*"
+    "ripplejs/ripple": "0.2.0",
+    "ianstormtaylor/trigger-event": "*",
+    "wilsonpage/fastdom": "v0.8.4"
   },
   "license": "MIT",
   "scripts": [
