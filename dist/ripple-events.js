@@ -219,13 +219,6 @@ var events = [
   'keyup'
 ];
 
-// enter
-// command + enter
-// escape
-// any key press
-// any key combination
-// on-keypress="{{ this.submit.bind(this, $index) | keys:'super + enter' }}"
-
 module.exports = function(View) {
   events.forEach(function(name){
     View.directive('on-' + name, {
@@ -247,5 +240,5 @@ module.exports = function(View) {
 } else if (typeof define == "function" && define.amd) {
   define([], function(){ return require("events"); });
 } else {
-  this["ripple-events"] = require("events");
+  this.ripple.events = require("events");
 }})();

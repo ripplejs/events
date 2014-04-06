@@ -16,13 +16,6 @@ var events = [
   'keyup'
 ];
 
-// enter
-// command + enter
-// escape
-// any key press
-// any key combination
-// on-keypress="{{ this.submit.bind(this, $index) | keys:'super + enter' }}"
-
 module.exports = function(View) {
   events.forEach(function(name){
     View.directive('on-' + name, {
