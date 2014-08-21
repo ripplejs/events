@@ -11,7 +11,7 @@ describe('events', function(){
     beforeEach(function () {
       count = 0;
       View = ripple('<div on-click="{{ this.up }}"></div>');
-      View.use(events);
+      View.use(events());
       View.prototype.up = function(){
         count++;
       };
@@ -40,7 +40,7 @@ describe('events', function(){
     var view;
     beforeEach(function () {
       View = ripple('<div on-click="{{ this.update.bind(this, foo) }}"></div>');
-      View.use(events);
+      View.use(events());
       View.prototype.update = function up(val, event){
         this.el.innerHTML = val;
       };
