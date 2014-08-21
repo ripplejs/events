@@ -29,7 +29,7 @@ var ripple = require('ripple');
 var View = ripple(template);
 
 // Use the plugin
-View.use(events);
+View.use(events());
 
 // Listen for the events
 View.prototype.save = function(){
